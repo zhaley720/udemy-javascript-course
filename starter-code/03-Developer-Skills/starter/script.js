@@ -40,15 +40,31 @@
 
 
 
-const measureKelvin = function() {
-    const measurement = {
-        type: `temp`,
-        unit: `celsius`,
-        value: Number(prompt(`degrees celsius`))
-    }
-    console.table(measurement);
+// const measureKelvin = function() {
+//     const measurement = {
+//         type: `temp`,
+//         unit: `celsius`,
+//         value: Number(prompt(`degrees celsius`))
+//     }
+//     console.table(measurement);
 
-    const kelvin = measurement.value + 273;
-    return kelvin;
+//     const kelvin = measurement.value + 273;
+//     return kelvin;
+// }
+// console.log(measureKelvin());
+
+
+
+const arr1 = [17, 21, 23];
+const arr2 = [12, 5, -5, 0, 4];
+
+const printForecast = function (arr) {
+    let str = `...`;
+    for (let i = 0; i < arr.length; i++) {
+        str = str.concat(` ${arr[i]}*C in ${i + 1} days ...`);
+    }
+    return str;
 }
-console.log(measureKelvin());
+
+console.log(printForecast(arr1));
+console.log(printForecast(arr2));
