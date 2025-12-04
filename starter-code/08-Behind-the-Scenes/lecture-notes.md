@@ -167,3 +167,66 @@ popular paradigms:
 ### execution contexts belonging to arrow functions do NOT contain arguments object or "this" keyword
     - can use arguments object and "this" keyword from closest regular function parent
 ### execution contexts are stored in a call stack (last-in first-out)
+
+
+
+# scope and the scope chain
+
+## scope
+
+- scope: where can we access certain variables, and where can we not?
+    - global scope
+    - function scope
+    - block scope
+- javascript has lexical scoping
+    - scoping controlled by placement of functions and blocks in the code
+        - function written inside another function has access to parent function's variables
+- scope of a variable: region of code where that variable can be accessed
+
+1. global scope
+    - for variables declared outside of functions or blocks
+    - can be accessed anywhere in the program
+2. function scope
+    - variables declared inside the function are only accessible inside of that function, not outside
+    - also called "local scope"
+    - same as function's "variable environment"
+3. block scope
+    - only accessible inside block (such as an "if" statement block)
+    - let and const are block scoped
+    - var is NOT block scoped
+        - var declared inside a code block would be accessible to the parent function, or the global scope
+    - functions are also block scoped (only in strict mode)
+
+## scope chain
+
+- scopes inside other scopes can use parent scope's variables
+    - called "scope lookup"
+
+
+
+# hoisting
+
+- makes some variables accessible/usable in code before they are actually declared
+    - variables lifted to the top of their scope
+- before execution code is scanned for variable declarations and each variable a new property is created in the variable environment object
+- what variables are hoisted?
+    - function declarations?
+        - yes
+        - block scoped
+    - var variables?
+        - yes
+        - but they are undefined before declaration
+            - common source of bugs
+        - function scoped
+    - let and const variables?
+        - not hoisted
+            - (technically they are, but they are in the Temporal Dead Zone, and value set to "uninitialized")
+        - block scoped
+    - function expressions?
+        - same as their variable counterparts
+            - yes for var, no for let and const
+
+## okay, so why do we even use hoisting in the first place?
+
+- makes programming techniques, such as mutual recurrsion, possible
+    - var is a byproduct of this, but we can't remove it from javascript now without breaking previously written code
