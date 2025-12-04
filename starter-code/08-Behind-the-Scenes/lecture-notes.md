@@ -230,3 +230,29 @@ popular paradigms:
 
 - makes programming techniques, such as mutual recurrsion, possible
     - var is a byproduct of this, but we can't remove it from javascript now without breaking previously written code
+
+
+
+# the "this" keyword
+
+- the "this" keyword is a special variable that is created for every execution context
+    - points to the "owner" of the function in which the "this" keyword is used
+- the "this" keyword is NOT static
+    - depends on how the function is called
+    - value only assigned when the funcion is called
+
+### ways a function can be called
+
+1. as a method on an object
+    - when you call a method, the "this" keyword reffers to the object on which that method was called
+2. simple function call
+    - in "strict mode", if you call a function not as a method, the "this" keyword will be undefined
+    - if you do not use "strict mode", the "this" keyword points to the global object
+        - can be problematic
+3. arrow functions
+    - arrow functions do not have a "this" keyword
+    - if you use "this" in an arrow function, it is picked up by it's parent function
+4. as an event listener
+    - if a function is called from an event listener, the "this" keyword points to the DOM element that the handler function is attatched to
+
+- can also use "new", "call", "apply" and "bind" to call finctions, but we have not learned about them in the course yet
