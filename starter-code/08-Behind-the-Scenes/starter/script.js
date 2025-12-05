@@ -117,48 +117,96 @@
 
 
 
-var firstName = `matilda`;
+// var firstName = `matilda`;
 
-const jonas = {
-    firstName: `jonas`,
-    year: 1991,
-    calcAge: function() {
-        // console.log(this);
-        console.log(2037 - this.year);
+// const jonas = {
+//     firstName: `jonas`,
+//     year: 1991,
+//     calcAge: function() {
+//         // console.log(this);
+//         console.log(2037 - this.year);
 
-        // // solution 1
-        // const self = this; // or use "that"
-        // const isMillenial = function() {
-        //     // console.log(this.year >= 1981 && this.year <= 1996);
-        //     console.log(self);
-        //     console.log(self.year >= 1981 && self.year <= 1996);
-        // };
+//         // // solution 1
+//         // const self = this; // or use "that"
+//         // const isMillenial = function() {
+//         //     // console.log(this.year >= 1981 && this.year <= 1996);
+//         //     console.log(self);
+//         //     console.log(self.year >= 1981 && self.year <= 1996);
+//         // };
 
-        // solution 2
-        const isMillenial = () => {
-            // console.log(this.year >= 1981 && this.year <= 1996);
-            console.log(this);
-            console.log(this.year >= 1981 && this.year <= 1996);
-        };
+//         // solution 2
+//         const isMillenial = () => {
+//             // console.log(this.year >= 1981 && this.year <= 1996);
+//             console.log(this);
+//             console.log(this.year >= 1981 && this.year <= 1996);
+//         };
 
-        isMillenial();
-    },
-    greet: () => console.log(`hey ${this.firstName}`)
+//         isMillenial();
+//     },
+//     greet: () => console.log(`hey ${this.firstName}`)
+// };
+
+// jonas.greet();
+// console.log(this.firstName);
+// jonas.calcAge();
+
+// const addExpr = function(a, b) {
+//     console.log(arguments);
+//     return a + b;
+// };
+// addExpr(2, 5);
+
+// var addArrow = (a, b) => {
+//     console.log(arguments);
+//     a + b;
+// }
+
+// addArrow();
+
+
+
+const jessica = {
+    firstName: `jessica`,
+    lastName: `williams`,
+    age: 27
 };
 
-jonas.greet();
-console.log(this.firstName);
-jonas.calcAge();
-
-const addExpr = function(a, b) {
-    console.log(arguments);
-    return a + b;
-};
-addExpr(2, 5);
-
-var addArrow = (a, b) => {
-    console.log(arguments);
-    a + b;
+function marryPerson(originalPerson, newLastName) {
+    originalPerson.lastName = newLastName;
+    return originalPerson;
 }
 
-addArrow();
+const marriedJessica = marryPerson(jessica);
+
+// const marriedJessica = jessica;
+// marriedJessica.lastName = `davis`;
+
+console.log(`jessica : `, jessica);
+console.log(`married jessica : `, marriedJessica);
+
+// SHALLOW COPY
+// nested this.family object is still a refference in the copied object
+
+const jessica2 = {
+    firstName: `jessica`,
+    lastName: `williams`,
+    age : 27,
+    family: [`alice`, `bob`]
+};
+
+const jessica2Copy = {...jessica2};
+jessica2Copy.lastName = `davis`;
+
+jessica2Copy.family.push(`mary`);
+jessica2Copy.family.push(`john`);
+
+console.log(`jessica2 : `, jessica2);
+console.log(`jessica2Copy : `, jessica2Copy);
+
+// deep copy
+const jessica2Clone = structuredClone(jessica2);
+jessica2Clone.family.push(`hannah`);
+jessica2Clone.family.push(`jimmy james`);
+
+console.log(`original : `, jessica2);
+console.log(`clone : `, jessica2Clone);

@@ -256,3 +256,54 @@ popular paradigms:
     - if a function is called from an event listener, the "this" keyword points to the DOM element that the handler function is attatched to
 
 - can also use "new", "call", "apply" and "bind" to call finctions, but we have not learned about them in the course yet
+
+
+
+# memory management in javascript
+
+- javascript automatically manages memory for us
+- memory lifecycle
+    1. memory allocated when a variable is declared
+    2. memory accenned when a variable is being accessed (write, read, or updated)
+    3. when a value is no longer needed, it is deleted from memory
+
+### where is memory allocated?
+
+- there are two types of data in javascript
+    1. primatives (number, string, boolean, undefined, null, symbol, bigInt)
+        - stored in the call stack
+            - stored within their execution contexts
+    2. objects (object literals, arrays, functions, and more...)
+        - stored in the heap
+        - **references to objects are stored in the call stack**
+    - there may be exceptions because of modern javascript's complexity
+
+### object refferences
+
+- primitives are stored in execution context in the call stack
+- objects are stored in the heap
+- how does the code know what the object is when executing?
+- variables for objects in the call stack contain refferences (the address of where to find the object in the heap)
+- this is done behind the scenes and is hidden to us while coding
+- **this means creating a copy of an object variable (`const myObject2 = myObject;`) the refference is pointing at the same object in memory**
+    - with primitives, it makes a copy of the primitive `const x = 15; let y = x; y += 15; x === 15; y === 30;`
+
+
+
+# garbage collection
+
+- primitive variables are removed from memory with the execution context in the call stack
+- garbage collection in the heap is done automatically in the engine
+- algorithm is called mark-and-sweep
+    - "alive" objects are reachable from a "root" in an active or global execution context, or a closure or event listener or timer
+    - an object needs to have a path of refference points pointing to it to be "alive"
+    - object in heap not being refferenced by anything active in the program is "dead"
+    - all unmarked, "dead" objects are deleted
+    - when an execution context that refferences an object finishes, the objects it's refferencing can then be deleted by garbage collection
+
+### memory leak
+
+- when an object that is no longer needed is not deleted from memory
+    - happens because of old event listeners or timers
+        - remember to deactivate event listeners and timers when no longer needed
+    - avoid declaring really big objects in the global context
