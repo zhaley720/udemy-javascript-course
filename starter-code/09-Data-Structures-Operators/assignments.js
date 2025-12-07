@@ -186,20 +186,50 @@ const books = [
 
 
 
-const [firstBook, secondBook] = books;
-// console.log(firstBook, secondBook);
+// const [firstBook, secondBook] = books;
+// // console.log(firstBook, secondBook);
 
-const [ , , thirdBook] = books;
-// console.log(thirdBook);
+// const [ , , thirdBook] = books;
+// // console.log(thirdBook);
 
-const ratings = [['rating', 4.19], ['ratingsCount', 144584]];
+// const ratings = [['rating', 4.19], ['ratingsCount', 144584]];
 
-const [[ , rating], [ , ratingsCount]] = ratings;
-console.log(rating);
-console.log(ratingsCount);
+// const [[ , rating], [ , ratingsCount]] = ratings;
+// console.log(rating);
+// console.log(ratingsCount);
 
-const ratingStars = [63405, 1808];
-const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
-console.log(fiveStarRatings);
-console.log(oneStarRatings);
-console.log(threeStarRatings);
+// const ratingStars = [63405, 1808];
+// const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
+// console.log(fiveStarRatings);
+// console.log(oneStarRatings);
+// console.log(threeStarRatings);
+
+
+
+const [{title, author, ISBN}] = books;
+console.log(title);
+console.log(author);
+console.log(ISBN);
+
+const [{keywords: tags}] = books;
+console.log(tags);
+
+const [ , , , , , , {language, programmingLanguage = `unknown`}] = books;
+console.log(language);
+console.log(programmingLanguage);
+
+let bookTitle = `unknown`;
+let bookAuthor = `unknown`;
+({ title: bookTitle, author: bookAuthor } = books[1]);
+console.log(bookTitle);
+console.log(bookAuthor);
+
+const { thirdParty: { goodreads: { rating: bookRating } } } = books[0];
+console.log(bookRating);
+
+const printBookInfo = function ({ title, author, year = `year unknown` }) {
+  return `${title} by ${author}, ${year}`;
+};
+
+console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick', year: '2011' }));
+console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick' }));
