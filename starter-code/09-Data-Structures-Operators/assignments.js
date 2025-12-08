@@ -206,30 +206,56 @@ const books = [
 
 
 
-const [{title, author, ISBN}] = books;
-console.log(title);
-console.log(author);
-console.log(ISBN);
+// const [{title, author, ISBN}] = books;
+// console.log(title);
+// console.log(author);
+// console.log(ISBN);
 
-const [{keywords: tags}] = books;
-console.log(tags);
+// const [{keywords: tags}] = books;
+// console.log(tags);
 
-const [ , , , , , , {language, programmingLanguage = `unknown`}] = books;
-console.log(language);
-console.log(programmingLanguage);
+// const [ , , , , , , {language, programmingLanguage = `unknown`}] = books;
+// console.log(language);
+// console.log(programmingLanguage);
 
-let bookTitle = `unknown`;
-let bookAuthor = `unknown`;
-({ title: bookTitle, author: bookAuthor } = books[1]);
-console.log(bookTitle);
-console.log(bookAuthor);
+// let bookTitle = `unknown`;
+// let bookAuthor = `unknown`;
+// ({ title: bookTitle, author: bookAuthor } = books[1]);
+// console.log(bookTitle);
+// console.log(bookAuthor);
 
-const { thirdParty: { goodreads: { rating: bookRating } } } = books[0];
-console.log(bookRating);
+// const { thirdParty: { goodreads: { rating: bookRating } } } = books[0];
+// console.log(bookRating);
 
-const printBookInfo = function ({ title, author, year = `year unknown` }) {
-  return `${title} by ${author}, ${year}`;
-};
+// const printBookInfo = function ({ title, author, year = `year unknown` }) {
+//   return `${title} by ${author}, ${year}`;
+// };
 
-console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick', year: '2011' }));
-console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick' }));
+// console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick', year: '2011' }));
+// console.log(printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick' }));
+
+
+
+// const bookAuthors = [...books[0].author, ...books[1].author];
+// console.log(bookAuthors);
+
+// function spellWord(str) {
+//   console.log(...str);
+// }
+
+// spellWord(`javascript`);
+
+
+
+const [mainKeyword, ...rest] = books[0].keywords;
+console.log(mainKeyword);
+console.log(rest);
+
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+console.log(bookPublisher);
+console.log(restOfTheBook);
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`the book ${title} has ${authors.length} authors`);
+}
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
