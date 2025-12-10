@@ -275,7 +275,80 @@ const books = [
 
 
 
-for (let i = 0; i < books.length; i++) {
-  console.log(books[i].onlineContent);
-  books[i].onlineContent ?? console.log(`"${books[i].title}" provides no data about it's online content.`);
-}
+// for (let i = 0; i < books.length; i++) {
+//   console.log(books[i].onlineContent);
+//   books[i].onlineContent ?? console.log(`"${books[i].title}" provides no data about it's online content.`);
+// }
+
+
+
+// for (let i = 0; i < books.length; i++) {
+//   books[i].edition ??= 1;
+// }
+
+// // console.log(books[books.length - 2]);
+
+// for (let i = 0; i < books.length; i++) {
+//   books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
+
+//   console.log(books[i].thirdParty.goodreads.rating);
+//   console.log(books[i].highlighted);
+// }
+
+
+
+// let pageSum = 0;
+
+// for (const book of books) {
+//   pageSum += book.pages;
+// }
+
+// console.log(pageSum);
+
+// const allAuthors = [];
+
+// for (const book of books) {
+//   typeof book.author === `string` ? allAuthors.push(book.author) : allAuthors.push(...book.author);
+// }
+
+// console.log(allAuthors);
+
+// for (const [i, el] of allAuthors.entries()) {
+//   console.log(`${i + 1}. ${el}`);
+// }
+
+
+
+// const bookData = [
+//   ['title', 'Computer Networking: A Top-Down Approach'],
+//   ['author', ['James F. Kurose', 'Keith W. Ross']],
+//   ['publisher', 'Addison Wesley'],
+// ];
+
+// // Do the rest
+// const newBook = {
+//   [bookData[0][0]]: bookData[0][1],
+//   [bookData[1][0]]: bookData[1][1],
+//   [bookData[2][0]]: bookData[2][1]
+// };
+
+// console.log(newBook);
+
+// const pages = 880;
+
+// const newBook2 = {
+//   title: 'The C Programming Language',
+//   author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
+//   pages
+// };
+
+// console.log(newBook2);
+
+
+
+// const getFirstKeyword = function (book) {
+//   return book.keywords?.[0] ?? undefined;
+// };
+
+// console.log(getFirstKeyword(books[0]));
+// console.log(getFirstKeyword(newBook2));
