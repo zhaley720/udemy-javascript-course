@@ -63,6 +63,16 @@ const restaurant = {
   }
 };
 
+const rest1 = {
+  name : `capri`,
+  numGuests: 0
+};
+
+const rest2 = {
+  name: `la piazza`,
+  owner: `giovanni rossi`
+};
+
 
 
 // let [main, , secondary] = restaurant.categories;
@@ -168,34 +178,93 @@ const restaurant = {
 
 
 
-// spread, because on right side of =
-const arr = [1, 2, ...[3, 4]];
+// // spread, because on right side of =
+// const arr = [1, 2, ...[3, 4]];
 
-// rest, becouse on left side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+// // rest, becouse on left side of =
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
 
-const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(pizza, risotto, otherFood);
+// const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(pizza, risotto, otherFood);
 
-// objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// // objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
 
-// functions
-const add = function(...numbers) {
-  let total = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    total += numbers[i];
-  }
-  console.log(total);
-};
+// // functions
+// const add = function(...numbers) {
+//   let total = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     total += numbers[i];
+//   }
+//   console.log(total);
+// };
 
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 1, 4);
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
 
-const x = [23, 5, 7];
-add(...x);
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza(`mushrooms`, `onion`, `olives`, `spinach`);
+// restaurant.orderPizza(`mushrooms`, `onion`, `olives`, `spinach`);
+
+
+
+// console.log(`--- OR ---`);
+// console.log(3 || `jonas`);
+// console.log(`` || `jonas`);
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// console.log(undefined || 0 || `` || `hello` || 23 || null);
+
+// // restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log(`--- AND ---`);
+// console.log(0 && `jonas`);
+// console.log(7 && `jonas`);
+// console.log(`hello` && 23 && null && `jonas`);
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza(`mushrooms`, `spinach`);
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza(`mushrooms`, `spinach`);
+
+
+
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
+
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
+
+
+// // OR assignment operator
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
+
+// // nullish assignment operator (null or ondefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// // AND assignment operator
+// // rest1.owner = rest1.owner && `<ANONYMOUS>`;
+// // rest2.owner = rest2.owner && `<ANONYMOUS>`;
+// rest1.owner &&= `<ANONYMOUS>`;
+// rest2.owner &&= `<ANONYMOUS>`;
+
+
+// console.log(rest1);
+// console.log(rest2);
+

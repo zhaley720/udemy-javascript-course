@@ -247,15 +247,35 @@ const books = [
 
 
 
-const [mainKeyword, ...rest] = books[0].keywords;
-console.log(mainKeyword);
-console.log(rest);
+// const [mainKeyword, ...rest] = books[0].keywords;
+// console.log(mainKeyword);
+// console.log(rest);
 
-const { publisher: bookPublisher, ...restOfTheBook } = books[1];
-console.log(bookPublisher);
-console.log(restOfTheBook);
+// const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+// console.log(bookPublisher);
+// console.log(restOfTheBook);
 
-function printBookAuthorsCount(title, ...authors) {
-  console.log(`the book ${title} has ${authors.length} authors`);
+// function printBookAuthorsCount(title, ...authors) {
+//   console.log(`the book ${title} has ${authors.length} authors`);
+// }
+// printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+
+
+
+// function hasExamplesInJava(book) {
+//   return book.programmingLanguage === `Java` || `no data available`;
+// }
+
+// console.log(hasExamplesInJava(books[0]));
+// console.log(hasExamplesInJava(books[1]));
+
+// for (let i = 0; i < books.length; i++) {
+//   books[i].onlineContent && console.log(`"${books[i].title}" provides online content`);
+// }
+
+
+
+for (let i = 0; i < books.length; i++) {
+  console.log(books[i].onlineContent);
+  books[i].onlineContent ?? console.log(`"${books[i].title}" provides no data about it's online content.`);
 }
-printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
