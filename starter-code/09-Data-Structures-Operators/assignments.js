@@ -352,3 +352,21 @@ const books = [
 
 // console.log(getFirstKeyword(books[0]));
 // console.log(getFirstKeyword(newBook2));
+
+
+
+// const entries = [];
+
+// for (const x of Object.keys(books[0].thirdParty.goodreads)) {
+//   entries.push(x);
+// }
+
+// console.log(entries);
+
+// // wat???
+// // for (const [index, value] of Object.values(books[0].thirdParty.goodreads).entries()) {
+// //   entries[index].push(value);
+// // }
+
+// const entries2 = Object.entries(books[0].thirdParty.goodreads);
+// console.log(entries2);
