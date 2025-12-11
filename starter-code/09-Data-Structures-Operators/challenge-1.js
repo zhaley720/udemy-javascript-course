@@ -61,47 +61,47 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 GOOD LUCK 😀
 */
 
-// 1
-const [players1, players2] = game.players;
+// // 1
+// const [players1, players2] = game.players;
 
-// console.log(players1);
-// console.log(players2);
+// // console.log(players1);
+// // console.log(players2);
 
-// 2
-const [gk , ...fieldPlayers] = players1;
+// // 2
+// const [gk , ...fieldPlayers] = players1;
 
-// console.log(gk);
-// console.log(fieldPlayers);
+// // console.log(gk);
+// // console.log(fieldPlayers);
 
-// 3
-const allPlayers = [...players1, ...players2];
+// // 3
+// const allPlayers = [...players1, ...players2];
 
-// console.log(allPlayers);
+// // console.log(allPlayers);
 
-// 4
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // 4
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 
-// console.log(players1Final);
+// // console.log(players1Final);
 
-// 5
-const {odds: {team1, x: draw, team2}} = game;
-// console.log(team1);
-// console.log(team2);
-// console.log(draw);
+// // 5
+// const {odds: {team1, x: draw, team2}} = game;
+// // console.log(team1);
+// // console.log(team2);
+// // console.log(draw);
 
-// 6
-function printGoals(...players) {
-    for (let i = 0; i < players.length; i++) {
-        console.log(players[i]);
-    }
-    console.log(players.length);
-}
+// // 6
+// function printGoals(...players) {
+//     for (let i = 0; i < players.length; i++) {
+//         console.log(players[i]);
+//     }
+//     console.log(players.length);
+// }
 
-// printGoals(`freddy`, `billy`, `bobby`, `joe`);
+// // printGoals(`freddy`, `billy`, `bobby`, `joe`);
 
-// 7
-team1 < team2 && console.log(`team 1 is more likely to win`);
-team1 > team2 && console.log(`team 2 is more likely to win`);
+// // 7
+// team1 < team2 && console.log(`team 1 is more likely to win`);
+// team1 > team2 && console.log(`team 2 is more likely to win`);
 
 
 
@@ -128,6 +128,21 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 GOOD LUCK 😀
 */
 
-console.log(game.scored.entries());
+// 1
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
+}
 
-// for (const [i, el] of game.scored.entries()) {}
+// 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) {
+  average += odd;
+}
+average /= odds.length;
+console.log(average);
+
+// 3
+for (const [team, odd] of Object.entries(game.odds)) {
+  console.log(`Odd of ${team === `x` ? `draw` : `victory ${game[team]}`}: ${odd}`);
+}
