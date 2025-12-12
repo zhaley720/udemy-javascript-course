@@ -4,26 +4,9 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
-
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
-
-// Data needed for first part of the section
-const weekdays = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+  
+  // Data needed for first part of the section
+  const weekdays = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
 
 const openingHours = {
   [weekdays[3]]: {
@@ -331,28 +314,141 @@ const rest2 = {
 
 
 
-// property names
-const properties = Object.keys(openingHours);
-console.log(properties);
+// // property names
+// const properties = Object.keys(openingHours);
+// console.log(properties);
 
-let openStr = `we are open on ${properties.length} days: `;
+// let openStr = `we are open on ${properties.length} days: `;
 
-for (const day of Object.keys(openingHours)) {
-  openStr += `${day}, `;
-}
+// for (const day of Object.keys(openingHours)) {
+//   openStr += `${day}, `;
+// }
 
-console.log(openStr);
+// console.log(openStr);
 
-// property values
-const values = Object.values(openingHours);
-console.log(values);
+// // property values
+// const values = Object.values(openingHours);
+// console.log(values);
 
-// entire object
-const entries = Object.entries(openingHours);
-console.log(entries);
+// // entire object
+// const entries = Object.entries(openingHours);
+// console.log(entries);
 
-console.log(`--------------------`);
+// console.log(`--------------------`);
 
-for (const [key, {open, close}] of entries) {
-  console.log(`on ${key} we open at ${open} and close at ${close}`);
-}
+// for (const [key, {open, close}] of entries) {
+//   console.log(`on ${key} we open at ${open} and close at ${close}`);
+// }
+
+
+
+// const ordersSet = new Set([
+//   `pasta`,
+//   `pizza`,
+//   `pizza`,
+//   `risotto`,
+//   `pasta`,
+//   `pizza`
+// ]);
+// console.log(ordersSet);
+
+// console.log(new Set(`jonas`));
+
+// console.log(ordersSet.size);
+// console.log(ordersSet.has(`pizza`));
+// console.log(ordersSet.has(`bread`));
+
+// ordersSet.add(`garlic bread`);
+// ordersSet.add(`garlic bread`);
+// ordersSet.delete(`risotto`);
+// // ordersSet.clear();
+// console.log(ordersSet);
+
+// for (const order of ordersSet) console.log(order);
+
+// // example
+// const staff = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+// console.log(new Set(staff).size);
+// console.log(new Set('jonasschmedtmann').size);
+
+
+
+// // NEW SET OPERATIONS AS OF ES2025!!!
+// const italianFoods = new Set([
+//   'pasta',
+//   'gnocchi',
+//   'tomatoes',
+//   'olive oil',
+//   'garlic',
+//   'basil',
+// ]);
+
+// const mexicanFoods = new Set([
+//   'tortillas',
+//   'beans',
+//   'rice',
+//   'tomatoes',
+//   'avocado',
+//   'garlic',
+// ]);
+
+// const commonFoods = italianFoods.intersection(mexicanFoods);
+// console.log('intersection :', commonFoods);
+// console.log([...commonFoods]);
+
+// const italianMexicanFusion = mexicanFoods.union(mexicanFoods);
+// console.log('union :', italianMexicanFusion);
+
+// // console.log([...italianFoods, ...mexicanFoods]);
+// console.log([...new Set([...italianFoods, ...mexicanFoods])]);
+
+// const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+// console.log('difference italian :', uniqueItalianFoods);
+
+// const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+// console.log('difference mexican :', uniqueMexicanFoods);
+
+// const uniqueItalianAndMexicanFoods = italianFoods.symmetricDifference(mexicanFoods);
+// console.log(uniqueItalianAndMexicanFoods);
+
+// console.log(italianFoods.isDisjointFrom(mexicanFoods));
+
+
+
+const rest = new Map();
+rest.set('name', 'classico italiano');
+rest.set(1, 'firenze, italy');
+rest.set(2, 'lisbon, portugal');
+
+rest
+  .set('categories', ['italian', 'pizzeria', 'vegetarian', 'organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'we are open')
+  .set(false, 'we are closed');
+
+console.log(rest.get('name'));
+console.log(rest.get('true'));
+console.log(rest.get(true));
+console.log(rest.get('1'));
+console.log(rest.get(1));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+// rest.clear();
+console.log(rest);
+console.log(rest.size);
+
+// rest.set([1, 2], 'test');
+// console.log(rest.get([1, 2]));
+
+const arr = [1, 2];
+rest.set(arr, 'test 2');
+console.log(rest.get(arr));
+
+rest.set(document.querySelector('h1'), 'heading');
