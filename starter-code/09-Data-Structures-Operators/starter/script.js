@@ -417,38 +417,69 @@ const rest2 = {
 
 
 
-const rest = new Map();
-rest.set('name', 'classico italiano');
-rest.set(1, 'firenze, italy');
-rest.set(2, 'lisbon, portugal');
+// const rest = new Map();
+// rest.set('name', 'classico italiano');
+// rest.set(1, 'firenze, italy');
+// console.log(rest.set(2, 'lisbon, portugal'));
 
-rest
-  .set('categories', ['italian', 'pizzeria', 'vegetarian', 'organic'])
-  .set('open', 11)
-  .set('close', 23)
-  .set(true, 'we are open')
-  .set(false, 'we are closed');
+// rest
+//   .set('categories', ['italian', 'pizzeria', 'vegetarian', 'organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'we are open')
+//   .set(false, 'we are closed');
 
-console.log(rest.get('name'));
-console.log(rest.get('true'));
-console.log(rest.get(true));
-console.log(rest.get('1'));
-console.log(rest.get(1));
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get('1'));
+// console.log(rest.get(1));
 
-const time = 21;
-console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
-console.log(rest.has('categories'));
-rest.delete(2);
-// rest.clear();
-console.log(rest);
-console.log(rest.size);
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// // rest.clear();
 
-// rest.set([1, 2], 'test');
-// console.log(rest.get([1, 2]));
+// // rest.set([1, 2], 'test');
+// const arr = [1, 2];
+// rest.set(arr, 'test');
+// rest.set(document.querySelector('h1'), 'Heading');
+// console.log(rest);
+// console.log(rest.size);
 
-const arr = [1, 2];
-rest.set(arr, 'test 2');
-console.log(rest.get(arr));
+// // console.log(rest.get([1, 2]));
+// console.log(rest.get(arr));
 
-rest.set(document.querySelector('h1'), 'heading');
+
+
+const question = new Map([
+  ['question', 'what is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'java'],
+  [3, 'javascript'],
+  ['correct', 3],
+  [true, 'correct!'],
+  [false, 'try again!']
+]);
+
+console.log(question);
+
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('your answer'));
+const answer = 3;
+console.log(answer);
+console.log(question.get(question.get('correct') === answer));
+
+// convert map to array
+console.log([...question]);
+// console.log(question.entries());
+console.log(...question.keys());
+console.log(...question.values());
