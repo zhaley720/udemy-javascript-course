@@ -453,33 +453,75 @@ const rest2 = {
 
 
 
-const question = new Map([
-  ['question', 'what is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'java'],
-  [3, 'javascript'],
-  ['correct', 3],
-  [true, 'correct!'],
-  [false, 'try again!']
-]);
+// const question = new Map([
+//   ['question', 'what is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'java'],
+//   [3, 'javascript'],
+//   ['correct', 3],
+//   [true, 'correct!'],
+//   [false, 'try again!']
+// ]);
 
-console.log(question);
+// console.log(question);
 
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
 
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`answer ${key}: ${value}`);
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`answer ${key}: ${value}`);
+// }
+
+// // const answer = Number(prompt('your answer'));
+// const answer = 3;
+// console.log(answer);
+// console.log(question.get(question.get('correct') === answer));
+
+// // convert map to array
+// console.log([...question]);
+// // console.log(question.entries());
+// console.log(...question.keys());
+// console.log(...question.values());
+
+
+
+const airline =  `TAP Air Portugal`;
+const plane = `A320`;
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+console.log(airline.indexOf('portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function(seat) {
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('you got the middle seat');
+  else console.log('you got lucky');
 }
 
-// const answer = Number(prompt('your answer'));
-const answer = 3;
-console.log(answer);
-console.log(question.get(question.get('correct') === answer));
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
 
-// convert map to array
-console.log([...question]);
-// console.log(question.entries());
-console.log(...question.keys());
-console.log(...question.values());
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+
+console.log(typeof new String('jonas').slice(1));
