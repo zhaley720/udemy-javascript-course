@@ -227,9 +227,81 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 GOOD LUCK 😀
 */
 
-const poll = {
-    question: 'What is your favorite programming language?',
-    options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
-    answers: new Array(4).fill(0)
+// // my attempt
+// const poll = {
+//     question: 'What is your favorite programming language?',
+//     options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//     answers: new Array(4).fill(0),
+//     registerNewAnswer(answer) {
+//         const num = Number(answer)
+//         if (num >= 0 && num <= 3) {
+//             this.answers[num]++;
+//             console.log(this.answers);
+//         } else if (num) {
+//             console.log('not one of the answers');
+//         } else {
+//             console.log('not a number');
+//         }
+//     }
+// };
+
+// const answerPoll = function() {
+//     const boundFunc = poll.registerNewAnswer.bind(poll);
+//     const answer = prompt(`${poll.question}\n` + poll.options.join('\n'));
+//     boundFunc(answer);
+// };
+
+// const pollBtn = document.querySelector('.poll');
+// pollBtn.addEventListener('click', answerPoll);
+
+
+// // course answer
+// const poll = {
+//   question: 'What is your favorite programming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(write option number)`));
+//     console.log(answer);
+//     typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
+//   displayResults(type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   }
+// };
+
+// // poll.registerNewAnswer();
+
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// // bonus
+// poll.displayResults.call({answers: [5, 2, 3]});
+// poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]});
+
+
+
+const runOnce = function() {
+  console.log('this will never run again');
 };
+runOnce();
+
+// immediately invoked function expression (IIFE (iffy))
+(function() {
+  console.log('this will never run again');
+  const isPrivate = 23;
+})();
+
+(() => console.log('this will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+}
+// console.log(isPrivate);
 
