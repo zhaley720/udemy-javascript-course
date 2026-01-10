@@ -84,9 +84,9 @@ const displayMovements = function(movements) {
 
 // console.log(containerMovements.innerHTML);
 
-const calcDisplayBalance = function(movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function(acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function(acc) {
@@ -124,6 +124,17 @@ const createUsernames = function(accs) {
 createUsernames(accounts);
 // console.log(accounts);
 
+const updateUI = function(acc) {
+  // display movements
+  displayMovements(acc.movements);
+
+  // display balance
+  calcDisplayBalance(acc);
+
+  // display summary
+  calcDisplaySummary(acc);
+}
+
 
 
 // EVENT HANDLERS
@@ -149,15 +160,66 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
     inputLoginUsername.blur();
 
-    // display movements
-    displayMovements(currentAccount.movements);
-
-    // display balance
-    calcDisplayBalance(currentAccount.movements);
-
-    // display summary
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount);
   }
+});
+
+btnTransfer.addEventListener('click', function(e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAccount = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, recieverAccount);
+  inputTransferTo.value = '';
+  inputTransferAmount.value = '';
+
+  if (amount > 0 &&
+    recieverAccount &&
+    currentAccount.balance >= amount &&
+    recieverAccount?.username !== currentAccount.username
+  ) {
+    // console.log('transfer valid');
+    // doing the transfer
+    currentAccount.movements.push(-amount);
+    recieverAccount.movements.push(amount);
+
+    // update ui
+    updateUI(currentAccount);
+  }
+});
+
+btnLoan.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount / 10)) {
+    // add movement
+    currentAccount.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  if (inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    console.log('valid');
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+    console.log(index);
+    
+    // delete account
+    accounts.splice(index, 1);
+    
+    // hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = '';
+  inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
@@ -170,7 +232,7 @@ btnLogin.addEventListener('click', function (e) {
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -223,8 +285,6 @@ btnLogin.addEventListener('click', function (e) {
 // console.log('jonas'.at(-1));
 
 
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const [i, movement] of movements.entries()) {
 //   if (movement > 0) {
@@ -298,8 +358,6 @@ GOOD LUCK 😀
 
 
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 // const eurToUsd = 1.1;
 
 // const movementsUSD = movements.map(mov => mov * eurToUsd);
@@ -320,8 +378,6 @@ GOOD LUCK 😀
 
 
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 // const deposits = movements.filter(function(mov) {
 //   return mov > 0;
 // });
@@ -338,8 +394,6 @@ GOOD LUCK 😀
 // console.log(withdrawals);
 
 
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // console.log(movements);
 
@@ -369,7 +423,6 @@ GOOD LUCK 😀
 
 
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const eurToUsd = 1.1;
 
 // const totalDepositsUSD = movements
@@ -384,8 +437,6 @@ GOOD LUCK 😀
 
 
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 // const firstWithdrawal = movements.find(mov => mov < 0);
 // console.log(movements);
 // console.log(firstWithdrawal);
@@ -397,3 +448,30 @@ GOOD LUCK 😀
 
 
 
+// console.log(movements);
+// const lastWithdrawal = movements.findLast(mov => mov < 0);
+// console.log(lastWithdrawal);
+
+// const lastLargeMovementIndex = movements.findLastIndex(mov => Math.abs(mov > 2000));
+// console.log(`your last large movement was ${movements.length - lastLargeMovementIndex} movements ago`);
+
+
+
+console.log(movements);
+
+// checks equality
+console.log(movements.includes(-130));
+
+// checks condition
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// every el meets condition
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
