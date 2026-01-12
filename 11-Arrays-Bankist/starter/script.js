@@ -10,6 +10,7 @@ const account1 = {
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
+  type: 'premium'
 };
 
 const account2 = {
@@ -17,6 +18,7 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  type: 'standard'
 };
 
 const account3 = {
@@ -24,6 +26,7 @@ const account3 = {
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
+  type: 'premium'
 };
 
 const account4 = {
@@ -31,6 +34,7 @@ const account4 = {
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
+  type: 'basic'
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -65,10 +69,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // MY CODE
 
-const displayMovements = function(movements) {
+const displayMovements = function(movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function(mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function(mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
 
     const html = `
@@ -220,6 +226,13 @@ btnClose.addEventListener('click', function(e) {
   }
   inputCloseUsername.value = '';
   inputClosePin.value = '';
+});
+
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -478,29 +491,118 @@ GOOD LUCK 😀
 
 
 
-const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arrDeep.flat());
-console.log(arrDeep.flat(2));
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat());
+// console.log(arrDeep.flat(2));
 
-// const accountMovements = accounts.map(acc => acc.movements);
-// console.log(accountMovements);
-// const allMovements = accountMovements.flat();
-// console.log(allMovements);
-// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
-// console.log(overallBalance);
+// // const accountMovements = accounts.map(acc => acc.movements);
+// // console.log(accountMovements);
+// // const allMovements = accountMovements.flat();
+// // console.log(allMovements);
+// // const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// // console.log(overallBalance);
 
-// flat
-const overallBalance2 = accounts
-  .map(acc => acc.movements)
-  .flat()
-  .reduce((acc, mov) => acc + mov);
-console.log(overallBalance2);
+// // flat
+// const overallBalance2 = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov);
+// console.log(overallBalance2);
 
-// flatMap
-const overallBalance3 = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((acc, mov) => acc + mov);
-  console.log(overallBalance3);
+// // flatMap
+// const overallBalance3 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov);
+//   console.log(overallBalance3);
+
+
+
+// // strings
+// const owners = ['jonas', 'zach', 'adam', 'martha'];
+// owners.sort();
+// console.log(owners);
+
+// // numbers
+// console.log(movements);
+
+// // return < 0, A, B (keep order)
+// // return > 0, B, A (switch order)
+
+// // ascending
+// // movements.sort((a, b) => {
+// //   if (a > b) return 1;
+// //   if (b > a) return -1;
+// // });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// // descending
+// // movements.sort((a, b) => {
+// //   if (a > b) return -1;
+// //   if (b > a) return 1;
+// // });
+// movements.sort((a, b) => b - a);
+// console.log(movements);
+
+
+
+// console.log(movements);
+// const groupedMovements = Object.groupBy(
+//   movements, mov => mov > 0 ? 'deposits' : 'withdrawals'
+// );
+// console.log(groupedMovements);
+
+// const groupedByActivity = Object.groupBy(
+//   accounts, account => {
+//     const movementCount = account.movements.length;
+
+//     if (movementCount >= 8) return 'very active';
+//     if (movementCount >= 4) return 'active';
+//     if (movementCount >= 1) return 'moderate';
+//     return 'inactive';
+//   }
+// );
+// console.log(groupedByActivity);
+
+// // const groupedAccounts = Object.groupBy(accounts, account => account.type);
+// // destructured
+// const groupedAccounts = Object.groupBy(accounts, ({ type }) => type);
+// console.log(groupedAccounts);
+
+
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+const x = new Array(7);
+console.log(x);
+
+// x.fill(1);
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+// Array.from
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+
+const z = Array.from({length: 7}, (_, i) => i + 1);
+console.log(z);
+
+
+// generate array of 100 random dice rolls
+const rolls = Array.from({length: 100}, () => Math.trunc(Math.random() * 6) + 1);
+console.log(rolls);
+
+labelBalance.addEventListener('click', function() {
+  const movementsUI = Array.from(
+    document
+    .querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+});
