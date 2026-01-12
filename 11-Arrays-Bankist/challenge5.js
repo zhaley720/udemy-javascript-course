@@ -79,8 +79,8 @@ console.log(dogs.some(dog => dog.curFood === dog.reccomendedPortion));
 // 6.
 console.log('\n----- 6 -----');
 const withinRange = function(dog) {
-    const upperRange = dog.reccomendedPortion + dog.reccomendedPortion * 0.1;
-    const lowerRange = dog.reccomendedPortion - dog.reccomendedPortion * 0.1;
+    const upperRange = dog.reccomendedPortion * 1.1;
+    const lowerRange = dog.reccomendedPortion * 0.9;
     // console.log(dog.curFood >= lowerRange && dog.curFood <= upperRange);
     return dog.curFood >= lowerRange && dog.curFood <= upperRange;
 }
@@ -108,4 +108,6 @@ const dogsByOwners = Object.groupBy(dogs, dog => dog.owners.length);
 console.log(dogsByOwners);
 
 //10.
-const sortedDogs = dogs.toSorted();
+console.log('\n----- 10 -----');
+const sortedDogs = dogs.toSorted((a, b) => a.reccomendedPortion - b.reccomendedPortion);
+console.log(sortedDogs);
