@@ -1,7 +1,5 @@
 'use strict'
 
-// Coding Challenge #5
-
 /* 
 Julia and Kate are still studying dogs. This time they are want to figure out if the dogs in their are eating too much or too little food.
 
@@ -36,76 +34,21 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-// MY CODE
+// THEIR CODE
 
-// Helper function
-const calculatePortion = (dogsWeight) => Math.floor(dogsWeight ** 0.75 * 28);
-
+console.log('\n---------- THEIR CODE ----------');
 
 // 1.
 console.log('\n----- 1 -----');
-dogs.forEach(el => {
-    el.reccomendedPortion = calculatePortion(el.weight);
-});
+dogs.forEach(dog => dog.recFood = Math.floor(dog.weight ** 0.75 * 28));
 console.log(dogs);
 
 // 2.
 console.log('\n----- 2 -----');
-const sarahsDog = dogs.find(dog => dog.owners.includes('Sarah'));
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
 console.log(`Sarah's dog eats too ${
-    sarahsDog.curFood > sarahsDog.reccomendedPortion ? 'much' : 'little'
+    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
 }`);
 
-// 3.
+//3.
 console.log('\n----- 3 -----');
-const ownersTooMuch = dogs
-    .filter(dog => dog.curFood > dog.reccomendedPortion)
-    .flatMap(dog => dog.owners);
-const ownersTooLittle = dogs
-    .filter(dog => dog.curFood < dog.reccomendedPortion)
-    .flatMap(dog => dog.owners);
-console.log('ownersTooMuch : ', ownersTooMuch);
-console.log('ownersTooLittle : ', ownersTooLittle);
-
-// 4.
-console.log('\n----- 4 -----');
-console.log(`${ownersTooMuch.join(' and ')}'s dogs eat too much!`);
-console.log(`${ownersTooLittle.join(' and ')}'s dogs eat too little!`);
-
-// 5.
-console.log('\n----- 5 -----');
-console.log(dogs.some(dog => dog.curFood === dog.reccomendedPortion));
-
-// 6.
-console.log('\n----- 6 -----');
-const withinRange = function(dog) {
-    const upperRange = dog.reccomendedPortion + dog.reccomendedPortion * 0.1;
-    const lowerRange = dog.reccomendedPortion - dog.reccomendedPortion * 0.1;
-    // console.log(dog.curFood >= lowerRange && dog.curFood <= upperRange);
-    return dog.curFood >= lowerRange && dog.curFood <= upperRange;
-}
-// dogs.forEach(withinRange);
-
-console.log('is every dog eating an okay amount of food? : ', dogs.every(withinRange));
-
-// 7.
-console.log('\n----- 7 -----');
-const eatingGoodAmount = dogs.filter(withinRange);
-console.log(eatingGoodAmount);
-
-// 8.
-console.log('\n----- 8 -----');
-const dogsGroups = Object.groupBy(dogs, dog => {
-    if (dog.curFood === dog.reccomendedPortion) return 'exact';
-    if (dog.curFood > dog.reccomendedPortion) return 'tooMuch';
-    if (dog.curFood < dog.reccomendedPortion) return 'tooLittle';
-});
-console.log(dogsGroups);
-
-// 9.
-console.log('\n----- 9 -----');
-const dogsByOwners = Object.groupBy(dogs, dog => dog.owners.length);
-console.log(dogsByOwners);
-
-//10.
-const sortedDogs = dogs.toSorted();
