@@ -1,3 +1,5 @@
+'use strict'
+
 const books = [
   {
     title: 'Algorithms',
